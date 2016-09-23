@@ -24,12 +24,14 @@ def get_smallest_bar(data):
 
 
 def get_closest_bar(data, longitude, latitude):
-    def calc_distance(a,b):
+    def calc_distance(a, b):
         return ((a[0]-b[0])**2+(a[1]-b[1])**2)**0.5
     closest_bar = data[0]
-    distance_to_closest_bar = calc_distance((longitude, latitude), closest_bar['Cells']['geoData']['coordinates'])
+    distance_to_closest_bar = calc_distance(
+        (longitude, latitude), closest_bar['Cells']['geoData']['coordinates'])
     for bar in data:
-        distance = calc_distance((longitude, latitude), bar['Cells']['geoData']['coordinates'])
+        distance = calc_distance(
+            (longitude, latitude), bar['Cells']['geoData']['coordinates'])
         if distance < distance_to_closest_bar:
             distance_to_closest_bar = distance
             closest_bar = bar
@@ -41,6 +43,6 @@ if __name__ == '__main__':
     print('The biggest bar\n{}'.format(get_biggest_bar(json_data)))
     print('The smallest bar\n{}'.format(get_smallest_bar(json_data)))
     longitude = float(input('Enter longitude\t:'))
-    latitude = float(input('Enter longitude\t:'))
-    print('The closest bar\n{}'.format(get_closest_bar(json_data, longitude, latitude)))
-
+    latitude = float(input('Enter latitude\t:'))
+    print('The closest bar\n{}'.format(
+        get_closest_bar(json_data, longitude, latitude)))
