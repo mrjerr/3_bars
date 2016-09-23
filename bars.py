@@ -2,7 +2,7 @@ import json
 
 
 def load_data(filepath):
-    with open('bars.json') as f:
+    with open(filepath) as f:
         json_data = json.load(f)
     return json_data
 
